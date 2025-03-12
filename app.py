@@ -1,8 +1,13 @@
 import pandas as pd
 from datetime import datetime
+import locale
 
+locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 df = pd.read_csv('bhan2.csv', sep=';', encoding='latin1')
+
+with open('config.txt', 'r') as config_file:
+    cnpj = config_file.readline().strip()
 
 #escrever arquivo com os dados das colunas separando por pipe
 
@@ -10,7 +15,6 @@ with open('comissoes.txt', 'w', encoding='utf-8') as f:
     for i in range(len(df)):
         # Define as variáveis com os valores das colunas
         data = datetime.now().strftime('%d/%m/%Y')
-        cnpj = '79124079000201'
         conta_deb = '4.2.01.02.01'
         conta_cred = '2.1.05.04.01'
         valor = df['COMISSAO'][i].replace('.', '').replace(',', '.')  # Garante que está no formato correto
@@ -37,8 +41,7 @@ with open('adiantamentos.txt', 'w', encoding='utf-8') as f:
         elif vendedor in["ROITE REPRESENTACOES"]:
             continue
 
-        data = datetime.now().strftime('%d/%m/%Y')
-        cnpj = '79124079000201'
+        data = datetime.now().strftime('%d/%m/%Y')        
         adt_conta_deb = '4.2.01.02.01'
         adt_conta_cred = '2.1.05.04.01'
         adiantamento = df['ADIANTAMENTO'][i].replace('.', '').replace(',', '.')
