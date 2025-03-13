@@ -6,11 +6,11 @@ locale.setlocale(locale.LC_ALL, 'pt_BR.UTF-8')
 
 df = pd.read_csv('bhan2.csv', sep=';', encoding='latin1')
 
+#variavel d eambiente para ocultar dados sensiveis no codigo
 with open('config.txt', 'r') as config_file:
     cnpj = config_file.readline().strip()
 
 #escrever arquivo com os dados das colunas separando por pipe
-
 with open('comissoes.txt', 'w', encoding='utf-8') as f:
     for i in range(len(df)):
         # Define as variáveis com os valores das colunas
@@ -31,7 +31,6 @@ with open('comissoes.txt', 'w', encoding='utf-8') as f:
         f.write(linha)
 
 with open('adiantamentos.txt', 'w', encoding='utf-8') as f:
-
     for i in range(len(df)):
         adiantamento = df['ADIANTAMENTO'][i].strip()
         vendedor = df['VENDEDOR'][i].strip()
