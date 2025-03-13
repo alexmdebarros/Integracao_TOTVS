@@ -6,10 +6,11 @@ from datetime import datetime
 import os
 import configparser
 import webbrowser
+from PIL import Image, ImageTk
 
 class App(ttk.Window):
     def __init__(self):
-        super().__init__(themename="superhero")
+        super().__init__(themename="cosmo")
         
         self.title('Integração TOTVS')
         self.resizable(False, False)
@@ -18,13 +19,17 @@ class App(ttk.Window):
         self.create_widgets()
         
     def create_widgets(self):
-        self.label_title = ttk.Label(self, text='Integração de Comissões com TOTVS', font='arial, 20')
+        
+        title_frame = ttk.Frame(self)
+        title_frame.pack(pady=10, side='left')
+                
+        self.label_title = ttk.Label(self, text='Integração de Comissões', font='arial, 20')
         self.label_buttons = ttk.Label(self)
         self.btn_carregar = ttk.Button(self, text='Carregar arquivo CSV 🗂️', command=self.carregar_arquivo, bootstyle = 'primary')
         self.label_title.pack(pady=40)
         self.btn_carregar.pack(pady=10)       
                      
-        self.label_arquivo = ttk.Label(self, text='Nenhum arquivo selecionado', bootstyle='light')
+        self.label_arquivo = ttk.Label(self, text='Nenhum arquivo selecionado', font=('arial', 10), bootstyle='light', foreground='#000000')
         self.label_arquivo.pack(pady=5)
         
         self.btn_pasta = ttk.Button(self, text='Selecionar pasta de saída 📁', command=self.selecionar_pasta, bootstyle='primary')
@@ -45,7 +50,7 @@ class App(ttk.Window):
                 label.after(120, efeito_digitacao, texto, label, indice + 1)
             
         self.label_creator = ttk.Label(self, text='', font=('Courier New', 8), cursor='hand2')
-        self.after(800, efeito_digitacao, 'By - Alex', self.label_creator)
+        self.after(800, efeito_digitacao, 'Created By - Alex', self.label_creator)
         self.label_creator.bind('<Button-2>', abrir_link)
         self.label_creator.place(relx=0.0, rely=1.0, anchor='sw', x=10, y=-10)
         
