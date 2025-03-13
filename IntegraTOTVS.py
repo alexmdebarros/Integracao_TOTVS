@@ -6,7 +6,6 @@ from datetime import datetime
 import os
 import configparser
 import webbrowser
-from PIL import Image, ImageTk
 
 class App(ttk.Window):
     def __init__(self):
@@ -35,7 +34,7 @@ class App(ttk.Window):
         self.btn_pasta = ttk.Button(self, text='Selecionar pasta de saída 📁', command=self.selecionar_pasta, bootstyle='primary')
         self.btn_pasta.pack(pady=15)        
         
-        self.label_pasta = ttk.Label(self, text='Nenhuma pasta selecionada', bootstyle='light')
+        self.label_pasta = ttk.Label(self, text='Nenhuma pasta selecionada', bootstyle='light', foreground='#000000')
         self.label_pasta.pack(pady=5)
         
         self.btn_processar = ttk.Button(self, text='Gerar arquivos ✅', command=self.gerar_arquivos, bootstyle='success')

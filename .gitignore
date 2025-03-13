@@ -1,2 +1,8 @@
 config.txt
 app.py
+\build
+\dist
+IntegraTOTVS.spec
+\venv
+guid.py
+setup.py
